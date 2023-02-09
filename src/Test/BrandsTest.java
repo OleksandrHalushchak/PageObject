@@ -21,10 +21,6 @@ public class BrandsTest extends BaseTest {
     }
 
 
-    //public void checkBrands(){
-    //   MainPage = new MainPage();
-    //  MainPage.openMainPage();
-
 }
 
 
