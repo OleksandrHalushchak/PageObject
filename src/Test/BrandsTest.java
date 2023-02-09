@@ -17,7 +17,7 @@ public class BrandsTest extends BaseTest {
                        .getBrandList();
 
         Assertions.assertThat(actualBrand)
-                .as("Actual Brand is not as expected")
+                .as("Тще Brand")
                 .isEqualTo(
                         "Apple");
     }
