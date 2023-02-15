@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public abstract class BasePage {
 
-        protected static WebDriver driver;
+        public static WebDriver driver;
 
         //set driver for base page
         public static void setDriver(WebDriver webDriver) {
@@ -37,11 +38,25 @@ public abstract class BasePage {
                     .until(ExpectedConditions.presenceOfElementLocated(locator));
         }
 
-        public void scroll(int pixels) {
-            JavascriptExecutor jse = (JavascriptExecutor) driver;
-            jse.executeScript("window.scrollBy(0," + pixels + ")");
-        }
+    public WebElement waitUntilClickable(By locator, int seconds) {
+        return new WebDriverWait (getDriver(), Duration.ofSeconds(seconds))
+                .until(ExpectedConditions.elementToBeClickable(locator));
+    }
 
+
+        public static void scroll(int pixels) {
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+            jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        }
+    public void selectByText(By selectLocator, String text) {
+        Select select = new Select(getDriver().findElement(selectLocator));
+        select.selectByVisibleText(text);
+    }
+
+    public String getSelectedValue(By selectLocator) {
+        Select select = new Select(getDriver().findElement(selectLocator));
+        return select.getFirstSelectedOption().getText();
+    }
 
 }
 

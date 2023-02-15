@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 
 public class BaseTest {
 
+
         @BeforeMethod(alwaysRun = true)
         public void setUp() {
             WebDriverManager.chromedriver().setup();
@@ -18,7 +19,7 @@ public class BaseTest {
             BasePage.setDriver(driver);
         }
 
-        @AfterMethod(alwaysRun = true)
+       @AfterMethod(alwaysRun = true)
         public void quite() {
             BasePage.getDriver().quit();
         }
